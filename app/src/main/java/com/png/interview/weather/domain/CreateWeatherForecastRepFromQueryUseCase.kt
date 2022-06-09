@@ -14,7 +14,7 @@ class DefaultCreateWeatherForeCastRepFromQueryUseCase @Inject constructor(
     private val getWeatherForecastDataUseCase: GetWeatherForecastDataUseCase
 ) : CreateWeatherForecastRepFromQueryUseCase {
     override suspend fun invoke(query: String, days: Int): WeatherForecastViewRepresentation {
-        return when (val result = getWeatherForecastDataUseCase(query, days)) {
+         when (val result = getWeatherForecastDataUseCase(query, days)) {
             is NetworkResponse.Success -> {
                 val forecastList = mutableListOf<ForeCastViewData>()
                 result.body.forecast.forecastday.forEach {forecastDay ->
@@ -28,10 +28,10 @@ class DefaultCreateWeatherForeCastRepFromQueryUseCase @Inject constructor(
                         )
                     )
                 }
-                WeatherForecastViewRepresentation.WeatherForecastViewRep(forecastList)
+               return WeatherForecastViewRepresentation.WeatherForecastViewRep(forecastList)
             }
             else -> {
-                WeatherForecastViewRepresentation.Error
+              return  WeatherForecastViewRepresentation.Error
             }
         }
     }

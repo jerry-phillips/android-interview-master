@@ -8,7 +8,7 @@ import com.png.interview.weather.ui.model.ForeCastViewData
 
 class WeatherForeCastAdapter : RecyclerView.Adapter<WeatherForecastViewHolder>() {
 
-    var dataList: List<ForeCastViewData> = emptyList()
+    private var forecastList: List<ForeCastViewData> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherForecastViewHolder {
         val binding = ViewWeatherForecastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -16,16 +16,16 @@ class WeatherForeCastAdapter : RecyclerView.Adapter<WeatherForecastViewHolder>()
     }
 
     override fun onBindViewHolder(holder: WeatherForecastViewHolder, position: Int) {
-        val item = dataList[position]
+        val item = forecastList[position]
         holder.bind(item)
     }
 
     override fun getItemCount(): Int {
-        return dataList.size
+        return forecastList.size
     }
 
-    fun updateList(items: List<ForeCastViewData>) {
-        dataList = items
+    fun updateList(items: List<ForeCastViewData>?) {
+        forecastList = items ?: emptyList()
         notifyDataSetChanged()
     }
 
