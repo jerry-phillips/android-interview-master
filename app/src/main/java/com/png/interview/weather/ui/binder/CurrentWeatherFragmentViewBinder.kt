@@ -15,9 +15,10 @@ class CurrentWeatherFragmentViewBinder(
     val isError = viewModel.isErrorVisible
 
     var input: String = ""
+    private var currentInput: String = ""
 
     fun refreshClicked() {
-        Toast.makeText(activity, "Refresh Clicked TODO", Toast.LENGTH_LONG).show()
+        viewModel.submitCurrentWeatherSearch(currentInput)
     }
 
     fun seeForecastClicked() {
@@ -35,6 +36,7 @@ class CurrentWeatherFragmentViewBinder(
             Toast.makeText(activity, "Please Enter More than 3 Characters", Toast.LENGTH_LONG).show()
         } else {
             viewModel.submitCurrentWeatherSearch(input)
+            currentInput = input
         }
     }
 }
