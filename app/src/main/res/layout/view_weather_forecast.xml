@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="forecastViewData"
+            type="com.png.interview.weather.ui.model.ForeCastViewData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/date_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/min_temp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/min_temperature"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_label" />
+
+        <TextView
+            android:id="@+id/max_temp_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/max_temperature"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/min_temp_label" />
+
+        <TextView
+            android:id="@+id/forecast_wind_speed_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/wind_speed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/max_temp_label" />
+
+        <TextView
+            android:id="@+id/forecast_condition_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/condition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forecast_wind_speed_label" />
+
+        <TextView
+            android:id="@+id/min_temp_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{forecastViewData.minTemp}"
+            app:layout_constraintBottom_toBottomOf="@+id/min_temp_label"
+            app:layout_constraintStart_toEndOf="@+id/min_temp_label"
+            app:layout_constraintTop_toTopOf="@+id/min_temp_label" />
+
+        <TextView
+            android:id="@+id/max_temp_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{forecastViewData.maxTemp}"
+            app:layout_constraintBottom_toBottomOf="@+id/max_temp_label"
+            app:layout_constraintStart_toEndOf="@+id/max_temp_label"
+            app:layout_constraintTop_toTopOf="@+id/max_temp_label" />
+
+        <TextView
+            android:id="@+id/forecast_wind_speed_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{forecastViewData.windSpeed}"
+            app:layout_constraintBottom_toBottomOf="@+id/forecast_wind_speed_label"
+            app:layout_constraintStart_toEndOf="@+id/forecast_wind_speed_label"
+            app:layout_constraintTop_toTopOf="@+id/forecast_wind_speed_label" />
+
+        <TextView
+            android:id="@+id/forecast_condition_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{forecastViewData.condition}"
+            app:layout_constraintBottom_toBottomOf="@+id/forecast_condition_label"
+            app:layout_constraintStart_toEndOf="@+id/forecast_condition_label"
+            app:layout_constraintTop_toTopOf="@+id/forecast_condition_label" />
+
+        <TextView
+            android:id="@+id/forecast_date_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{forecastViewData.date}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/date_label"
+            app:layout_constraintStart_toEndOf="@+id/date_label"
+            app:layout_constraintTop_toTopOf="@+id/date_label" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

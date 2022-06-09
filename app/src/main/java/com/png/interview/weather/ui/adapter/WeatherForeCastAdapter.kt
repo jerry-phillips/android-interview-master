@@ -1,0 +1,32 @@
+package com.png.interview.weather.ui.adapter
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.png.interview.databinding.ViewWeatherForecastBinding
+import com.png.interview.weather.ui.model.ForeCastViewData
+
+class WeatherForeCastAdapter : RecyclerView.Adapter<WeatherForecastViewHolder>() {
+
+    var dataList: List<ForeCastViewData> = emptyList()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherForecastViewHolder {
+        val binding = ViewWeatherForecastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return WeatherForecastViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: WeatherForecastViewHolder, position: Int) {
+        val item = dataList[position]
+        holder.bind(item)
+    }
+
+    override fun getItemCount(): Int {
+        return dataList.size
+    }
+
+    fun updateList(items: List<ForeCastViewData>) {
+        dataList = items
+        notifyDataSetChanged()
+    }
+
+}
