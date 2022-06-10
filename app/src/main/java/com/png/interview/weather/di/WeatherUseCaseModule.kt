@@ -19,4 +19,10 @@ abstract class WeatherUseCaseModule {
     @Binds
     abstract fun bindsGetWeatherForecastRepUseCase(useCase: DefaultCreateWeatherForeCastRepFromQueryUseCase): CreateWeatherForecastRepFromQueryUseCase
 
+    @Binds
+    abstract fun bindsGetAutoCompleteDataUseCase(useCase: DefaultGetAutoCompleteRepDataUseCase): GetAutoCompleteDataUseCase
+
+    @Binds
+    abstract fun bindsGetGetAutoCompleteRepDataUseCase(useCase: DefaultCreateAutoCompleteRepFromQueryUseCase): CreateAutoCompleteRepFromQueryUseCase
+
 }
