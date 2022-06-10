@@ -1,7 +1,14 @@
 package com.png.interview.weather.ui.binder
 
 import android.app.Activity
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.databinding.BindingAdapter
+import com.png.interview.R
 import com.png.interview.weather.ui.viewmodel.CurrentWeatherViewModel
 
 class CurrentWeatherFragmentViewBinder(
@@ -12,18 +19,42 @@ class CurrentWeatherFragmentViewBinder(
 ) {
 
     val availableWeatherViewData = viewModel.availableCurrentWeatherLiveData
+    val autoCompleteTerms = viewModel.autoCompleteTerms
     val isEmpty = viewModel.isEmptyVisible
     val isError = viewModel.isErrorVisible
 
     var input: String = ""
     private var currentInput: String = ""
 
+    val textChangeListener = object : TextWatcher{
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+        override fun afterTextChanged(editable: Editable?) {
+            if (editable != null && editable.length > 2) {
+                viewModel.getTextSuggestions(editable.toString())
+            }
+        }
+
+    }
+
+    val selectedListener = AdapterView.OnItemClickListener { adapter, _, pos, _ ->
+        input = adapter.getItemAtPosition(pos) as String
+        goClicked()
+    }
+
+
     fun refreshClicked() {
-        viewModel.submitCurrentWeatherSearch(currentInput)
+        if (currentInput.isNotEmpty()) {
+            viewModel.submitCurrentWeatherSearch(currentInput)
+        }
     }
 
     fun seeForecastClicked() {
-        forecastAction(input)
+        if (input.isNotEmpty()) {
+            forecastAction(input)
+        }
     }
 
     fun settingsClicked() {
@@ -39,5 +70,18 @@ class CurrentWeatherFragmentViewBinder(
             viewModel.submitCurrentWeatherSearch(input)
             currentInput = input
         }
+    }
+}
+
+@BindingAdapter("entries")
+fun bindAutocomplete(textView: AutoCompleteTextView, terms: List<String>?){
+    terms?.let {
+        val adapter = ArrayAdapter(
+            textView.context,
+            R.layout.support_simple_spinner_dropdown_item,
+            it)
+
+        textView.setAdapter(adapter)
+        textView.showDropDown()
     }
 }
