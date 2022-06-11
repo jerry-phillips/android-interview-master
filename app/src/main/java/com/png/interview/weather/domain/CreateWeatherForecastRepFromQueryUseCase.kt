@@ -22,13 +22,14 @@ class DefaultCreateWeatherForeCastRepFromQueryUseCase @Inject constructor(
          when (val result = getWeatherForecastDataUseCase(query, days)) {
             is NetworkResponse.Success -> {
                 val forecastList = mutableListOf<ForeCastViewData>()
+                val metricUtil = MetricUtil(sharedPreferences)
                 result.body.forecast.forecastday.forEach {forecastDay ->
                     forecastList.add(
                         ForeCastViewData(
                             date = forecastDay.date ,
-                            minTemp = "${forecastDay.day.mintemp_f} ${MetricUtil(sharedPreferences).temperature}",
-                            maxTemp = "${forecastDay.day.maxtemp_f} ${MetricUtil(sharedPreferences).temperature}",
-                            windSpeed = "${forecastDay.day.maxwind_mph} ${MetricUtil(sharedPreferences).speed}",
+                            minTemp = "${forecastDay.day.mintemp_f} ${metricUtil.temperature}",
+                            maxTemp = "${forecastDay.day.maxtemp_f} ${metricUtil.temperature}",
+                            windSpeed = "${forecastDay.day.maxwind_mph} ${metricUtil.speed}",
                             condition = forecastDay.day.condition.text
                         )
                     )
