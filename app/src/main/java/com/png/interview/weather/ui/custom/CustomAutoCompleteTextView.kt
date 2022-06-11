@@ -1,4 +1,4 @@
-package com.png.interview.weather.ui.util
+package com.png.interview.weather.ui.custom
 
 import android.annotation.SuppressLint
 import android.content.Context

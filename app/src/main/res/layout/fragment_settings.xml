@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<data>
-
+		<variable
+			name="viewBinder"
+			type="com.png.interview.weather.ui.binder.SettingsFragmentViewBinder" />
 	</data>
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
@@ -35,11 +37,15 @@
 			<RadioButton
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:checked="@{!viewBinder.isMetric}"
+				android:onClick="@{() -> viewBinder.setUnitOfMeasure(false)}"
 				android:text="@string/imperial" />
 
 			<RadioButton
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:checked="@{viewBinder.isMetric}"
+				android:onClick="@{() -> viewBinder.setUnitOfMeasure(true)}"
 				android:text="@string/metric" />
 
 		</RadioGroup>

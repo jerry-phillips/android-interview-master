@@ -52,8 +52,8 @@ class CurrentWeatherFragmentViewBinder(
     }
 
     fun seeForecastClicked() {
-        if (input.isNotEmpty()) {
-            forecastAction(input)
+        if (currentInput.isNotEmpty()) {
+            forecastAction(currentInput)
         }
     }
 
@@ -82,6 +82,6 @@ fun bindAutocomplete(textView: AutoCompleteTextView, terms: List<String>?){
             it)
 
         textView.setAdapter(adapter)
-        textView.showDropDown()
+        adapter.notifyDataSetChanged()
     }
 }
