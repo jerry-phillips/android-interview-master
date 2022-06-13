@@ -13,15 +13,15 @@ import javax.inject.Inject
 class WeatherForecastViewModel @Inject constructor(
     private val createWeatherForecastRepFromQueryUseCase: CreateWeatherForecastRepFromQueryUseCase,
 ) : ViewModel() {
-    private val _weatherForcastViewRepresentation = MutableStateFlow<WeatherForecastViewRepresentation>(WeatherForecastViewRepresentation.EmptyList)
+    private val _weatherForecastViewRepresentation = MutableStateFlow<WeatherForecastViewRepresentation>(WeatherForecastViewRepresentation.EmptyList)
 
     fun getForecast(query: String, days: Int) {
         viewModelScope.launch {
-            _weatherForcastViewRepresentation.value = createWeatherForecastRepFromQueryUseCase(query, days)
+            _weatherForecastViewRepresentation.value = createWeatherForecastRepFromQueryUseCase(query, days)
         }
     }
 
-    val forecastList = _weatherForcastViewRepresentation
+    val forecastList = _weatherForecastViewRepresentation
         .map { (it as? WeatherForecastViewRepresentation.WeatherForecastViewRep)?.dataList }
         .asLiveData()
 }
