@@ -19,7 +19,6 @@ class DefaultCreateAutoCompleteRepFromQueryUseCase @Inject constructor(
                 for (i in 0 until size) {
                     var value =
                             "${result.body[i].name}, ${result.body[i].region}, ${result.body[i].country}"
-
                     items.add(value)
                 }
                 AutoCompleteViewReprensentation.AutoCompleteViewRep(items)

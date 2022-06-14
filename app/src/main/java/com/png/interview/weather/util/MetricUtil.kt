@@ -10,27 +10,27 @@ data class MetricUtil(
 ) {
 
     private val isMetric = sharedPreferences.getBoolean(IS_METRIC, false)
-    val temperatureAbbr = if (isMetric) "C" else "F"
-    val speedAbbr = if (isMetric) "KPH" else "MPH"
+    private val temperatureAbbr = if (isMetric) "C" else "F"
+    private val speedAbbr = if (isMetric) "KPH" else "MPH"
 
-    fun getMaxTemp(day: Day): Double {
-        return if (isMetric) day.maxtemp_c else day.maxtemp_f
+    fun getMaxTemp(day: Day): String {
+        return "${if (isMetric) day.maxtemp_c else day.maxtemp_f} ${temperatureAbbr}"
     }
 
-    fun getMinTemp(day: Day): Double {
-        return if (isMetric) day.mintemp_c else day.mintemp_c
+    fun getMinTemp(day: Day): String {
+        return "${if (isMetric) day.mintemp_c else day.mintemp_c} ${temperatureAbbr}"
     }
 
-    fun getWindSpeed(day: Day): Double {
-        return if (isMetric) day.maxwind_kph else day.maxwind_mph
+    fun getWindSpeed(day: Day): String {
+        return "${if (isMetric) day.maxwind_kph else day.maxwind_mph} ${speedAbbr}"
     }
 
-    fun getCurrentTemp(current: Current): Double {
-        return if (isMetric) current.temp_c else current.temp_f
+    fun getCurrentTemp(current: Current): String {
+        return "${if (isMetric) current.temp_c else current.temp_f} ${temperatureAbbr}"
     }
 
-    fun getCurrentSpeed(current: Current): Double {
-        return if (isMetric) current.gust_kph else current.gust_mph
+    fun getCurrentSpeed(current: Current): String {
+        return "${if (isMetric) current.gust_kph else current.gust_mph} ${speedAbbr}"
     }
 
 }
