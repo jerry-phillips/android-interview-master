@@ -27,9 +27,9 @@ class DefaultCreateWeatherForeCastRepFromQueryUseCase @Inject constructor(
                     forecastList.add(
                         ForeCastViewData(
                             date = forecastDay.date ,
-                            minTemp = "${forecastDay.day.mintemp_f} ${metricUtil.temperature}",
-                            maxTemp = "${forecastDay.day.maxtemp_f} ${metricUtil.temperature}",
-                            windSpeed = "${forecastDay.day.maxwind_mph} ${metricUtil.speed}",
+                            minTemp = "${metricUtil.getMinTemp(forecastDay.day)} ${metricUtil.temperatureAbbr}",
+                            maxTemp = "${metricUtil.getMaxTemp(forecastDay.day)} ${metricUtil.temperatureAbbr}",
+                            windSpeed = "${metricUtil.getWindSpeed(forecastDay.day)} ${metricUtil.speedAbbr}",
                             condition = forecastDay.day.condition.text
                         )
                     )

@@ -23,10 +23,10 @@ class DefaultCreateCurrentWeatherRepFromQueryUseCase @Inject constructor(
                     AvailableWeatherViewData(
                         name = result.body.location.name,
                         date = result.body.location.localtime,
-                        temperature = "${result.body.current.temp_f} ${metricUtil.temperature}",
+                        temperature = "${metricUtil.getCurrentTemp(result.body.current)} ${metricUtil.temperatureAbbr}",
                         condition = result.body.current.condition.text,
                         windDirection = result.body.current.wind_dir,
-                        windSpeed = "${result.body.current.gust_mph} ${metricUtil.speed}"
+                        windSpeed = "${metricUtil.getCurrentSpeed(result.body.current)} ${metricUtil.speedAbbr}"
                     )
                 )
             }
