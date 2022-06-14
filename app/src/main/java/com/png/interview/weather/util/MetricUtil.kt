@@ -14,23 +14,23 @@ data class MetricUtil(
     private val speedAbbr = if (isMetric) "KPH" else "MPH"
 
     fun getMaxTemp(day: Day): String {
-        return "${if (isMetric) day.maxtemp_c else day.maxtemp_f} ${temperatureAbbr}"
+        return "${if (isMetric) day.maxtemp_c else day.maxtemp_f} $temperatureAbbr"
     }
 
     fun getMinTemp(day: Day): String {
-        return "${if (isMetric) day.mintemp_c else day.mintemp_c} ${temperatureAbbr}"
+        return "${if (isMetric) day.mintemp_c else day.mintemp_c} $temperatureAbbr"
     }
 
     fun getWindSpeed(day: Day): String {
-        return "${if (isMetric) day.maxwind_kph else day.maxwind_mph} ${speedAbbr}"
+        return "${if (isMetric) day.maxwind_kph else day.maxwind_mph} $speedAbbr"
     }
 
     fun getCurrentTemp(current: Current): String {
-        return "${if (isMetric) current.temp_c else current.temp_f} ${temperatureAbbr}"
+        return "${if (isMetric) current.temp_c else current.temp_f} $temperatureAbbr"
     }
 
     fun getCurrentSpeed(current: Current): String {
-        return "${if (isMetric) current.gust_kph else current.gust_mph} ${speedAbbr}"
+        return "${if (isMetric) current.gust_kph else current.gust_mph} $speedAbbr"
     }
 
 }
