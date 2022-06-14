@@ -26,7 +26,7 @@ data class MetricUtil(
     }
 
     fun getCurrentTemp(current: Current): Double {
-        return if ( isMetric) current.temp_c else current.temp_f
+        return if (isMetric) current.temp_c else current.temp_f
     }
 
     fun getCurrentSpeed(current: Current): Double {
