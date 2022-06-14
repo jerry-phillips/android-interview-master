@@ -22,11 +22,7 @@ data class MetricUtil(
     }
 
     fun getWindSpeed(day: Day): Double {
-        return if (sharedPreferences.getBoolean(
-                IS_METRIC,
-                false
-            )
-        ) day.maxwind_kph else day.maxwind_mph
+        return if (isMetric) day.maxwind_kph else day.maxwind_mph
     }
 
     fun getCurrentTemp(current: Current): Double {
