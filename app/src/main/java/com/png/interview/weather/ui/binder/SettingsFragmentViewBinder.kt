@@ -5,9 +5,9 @@ import com.png.interview.weather.ui.viewmodel.SettingsViewModel
 
 const val IS_METRIC = "isMetric"
 
-class SettingsFragmentViewBinder (
+class SettingsFragmentViewBinder(
     private val viewModel: SettingsViewModel
-        ) {
+) {
 
     val isMetric = viewModel.isMetric
 

@@ -13,7 +13,7 @@ class SettingsViewModel @Inject constructor(
 
     val isMetric = sharedPreferences.getBoolean(IS_METRIC, false)
 
-    fun setMetricImperialValue(isMetric: Boolean){
+    fun setMetricImperialValue(isMetric: Boolean) {
         val prefsEdit = sharedPreferences.edit()
         prefsEdit.putBoolean(IS_METRIC, isMetric)
         prefsEdit.apply()

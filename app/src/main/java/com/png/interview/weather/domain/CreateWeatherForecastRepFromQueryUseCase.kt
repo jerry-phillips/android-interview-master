@@ -1,7 +1,6 @@
 package com.png.interview.weather.domain
 
 
-
 import android.content.SharedPreferences
 import com.png.interview.api.common_model.NetworkResponse
 import com.png.interview.weather.ui.model.ForeCastViewData
@@ -19,14 +18,14 @@ class DefaultCreateWeatherForeCastRepFromQueryUseCase @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : CreateWeatherForecastRepFromQueryUseCase {
     override suspend fun invoke(query: String, days: Int): WeatherForecastViewRepresentation {
-         when (val result = getWeatherForecastDataUseCase(query, days)) {
+        when (val result = getWeatherForecastDataUseCase(query, days)) {
             is NetworkResponse.Success -> {
                 val forecastList = mutableListOf<ForeCastViewData>()
                 val metricUtil = MetricUtil(sharedPreferences)
-                result.body.forecast.forecastday.forEach {forecastDay ->
+                result.body.forecast.forecastday.forEach { forecastDay ->
                     forecastList.add(
                         ForeCastViewData(
-                            date = forecastDay.date ,
+                            date = forecastDay.date,
                             minTemp = "${metricUtil.getMinTemp(forecastDay.day)} ${metricUtil.temperatureAbbr}",
                             maxTemp = "${metricUtil.getMaxTemp(forecastDay.day)} ${metricUtil.temperatureAbbr}",
                             windSpeed = "${metricUtil.getWindSpeed(forecastDay.day)} ${metricUtil.speedAbbr}",
@@ -34,10 +33,10 @@ class DefaultCreateWeatherForeCastRepFromQueryUseCase @Inject constructor(
                         )
                     )
                 }
-               return WeatherForecastViewRepresentation.WeatherForecastViewRep(forecastList)
+                return WeatherForecastViewRepresentation.WeatherForecastViewRep(forecastList)
             }
             else -> {
-              return  WeatherForecastViewRepresentation.Error
+                return WeatherForecastViewRepresentation.Error
             }
         }
     }

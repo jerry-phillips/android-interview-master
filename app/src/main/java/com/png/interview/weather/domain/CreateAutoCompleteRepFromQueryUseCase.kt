@@ -15,12 +15,11 @@ class DefaultCreateAutoCompleteRepFromQueryUseCase @Inject constructor(
         return when (val result = getAutoCompleteDataUseCase(query)) {
             is NetworkResponse.Success -> {
                 val items = mutableListOf<String>()
-                val size = if(result.body.size <= 5) result.body.size else 5
+                val size = if (result.body.size <= 5) result.body.size else 5
                 for (i in 0 until size) {
-                    var value = ""
-                    if (result.body[i] != null) {
-                       value = "${result.body[i].name}, ${result.body[i].region}, ${result.body[i].country}"
-                    }
+                    var value =
+                            "${result.body[i].name}, ${result.body[i].region}, ${result.body[i].country}"
+
                     items.add(value)
                 }
                 AutoCompleteViewReprensentation.AutoCompleteViewRep(items)
