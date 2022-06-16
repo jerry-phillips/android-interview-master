@@ -3,6 +3,7 @@ package com.png.interview.weather.domain
 
 import android.content.SharedPreferences
 import com.png.interview.api.common_model.NetworkResponse
+import com.png.interview.weather.ui.binder.IS_METRIC
 import com.png.interview.weather.ui.model.ForeCastViewData
 import com.png.interview.weather.ui.model.WeatherForecastViewRepresentation
 import com.png.interview.weather.util.MetricUtil
@@ -21,7 +22,7 @@ class DefaultCreateWeatherForeCastRepFromQueryUseCase @Inject constructor(
         when (val result = getWeatherForecastDataUseCase(query, days)) {
             is NetworkResponse.Success -> {
                 val forecastList = mutableListOf<ForeCastViewData>()
-                val metricUtil = MetricUtil(sharedPreferences)
+                val metricUtil = MetricUtil(sharedPreferences.getBoolean(IS_METRIC, false))
                 result.body.forecast.forecastday.forEach { forecastDay ->
                     forecastList.add(
                         ForeCastViewData(
