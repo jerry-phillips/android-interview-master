@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.png.interview.databinding.ViewWeatherForecastBinding
 import com.png.interview.weather.ui.model.ForeCastViewData
 
-class WeatherForeCastAdapter : RecyclerView.Adapter<WeatherForecastViewHolder>() {
+class WeatherForecastAdapter : RecyclerView.Adapter<WeatherForecastViewHolder>() {
 
     private var forecastList: List<ForeCastViewData> = emptyList()
 

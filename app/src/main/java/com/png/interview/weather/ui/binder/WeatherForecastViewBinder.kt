@@ -2,7 +2,7 @@ package com.png.interview.weather.ui.binder
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.png.interview.weather.ui.adapter.WeatherForeCastAdapter
+import com.png.interview.weather.ui.adapter.WeatherForecastAdapter
 import com.png.interview.weather.ui.model.ForeCastViewData
 import com.png.interview.weather.ui.viewmodel.WeatherForecastViewModel
 
@@ -20,7 +20,7 @@ class WeatherForecastViewBinder(
 
 @BindingAdapter("forecastList")
 fun bindDataList(recyclerView: RecyclerView, forecastList: List<ForeCastViewData>?) {
-    val adapter = WeatherForeCastAdapter()
+    val adapter = WeatherForecastAdapter()
     recyclerView.adapter = adapter
     adapter.updateList(forecastList)
 }

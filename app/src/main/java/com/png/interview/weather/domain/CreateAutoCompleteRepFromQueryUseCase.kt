@@ -17,7 +17,7 @@ class DefaultCreateAutoCompleteRepFromQueryUseCase @Inject constructor(
                 val items = mutableListOf<String>()
                 val size = if (result.body.size <= 5) result.body.size else 5
                 for (i in 0 until size) {
-                    var value =
+                    val value =
                             "${result.body[i].name}, ${result.body[i].region}, ${result.body[i].country}"
                     items.add(value)
                 }

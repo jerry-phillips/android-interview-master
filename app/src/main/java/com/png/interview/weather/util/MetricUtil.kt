@@ -6,9 +6,8 @@ import com.png.interview.weather.api.model.Day
 import com.png.interview.weather.ui.binder.IS_METRIC
 
 data class MetricUtil(
-    var sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences
 ) {
-
     private val isMetric = sharedPreferences.getBoolean(IS_METRIC, false)
     private val temperatureAbbr = if (isMetric) "C" else "F"
     private val speedAbbr = if (isMetric) "KPH" else "MPH"
