@@ -14,14 +14,9 @@ class DefaultCreateAutoCompleteRepFromQueryUseCase @Inject constructor(
     override suspend fun invoke(query: String): AutoCompleteViewReprensentation {
         return when (val result = getAutoCompleteDataUseCase(query)) {
             is NetworkResponse.Success -> {
-                val items = mutableListOf<String>()
-                val size = if (result.body.size <= 5) result.body.size else 5
-                for (i in 0 until size) {
-                    val value =
-                            "${result.body[i].name}, ${result.body[i].region}, ${result.body[i].country}"
-                    items.add(value)
-                }
-                AutoCompleteViewReprensentation.AutoCompleteViewRep(items)
+                AutoCompleteViewReprensentation.AutoCompleteViewRep(result.body.take(5).map {
+                    "${it.name}, ${it.region}, ${it.country}"
+                })
             }
             else -> {
                 AutoCompleteViewReprensentation.Error
