@@ -21,13 +21,13 @@ class DefaultCreateWeatherForeCastRepFromQueryUseCase @Inject constructor(
     override suspend fun invoke(query: String, days: Int): WeatherForecastViewRepresentation {
         when (val result = getWeatherForecastDataUseCase(query, days)) {
             is NetworkResponse.Success -> {
-                val metricUtil = MetricUtil(sharedPreferences.getBoolean(IS_METRIC, false))
+                val isMetric = sharedPreferences.getBoolean(IS_METRIC, false)
                 val list = result.body.forecast.forecastday.map {
                             ForeCastViewData(
                                 date = it.date,
-                                minTemp = metricUtil.getMinTemp(it.day),
-                                maxTemp = metricUtil.getMaxTemp(it.day),
-                                windSpeed = metricUtil.getWindSpeed(it.day),
+                                minTemp = MetricUtil.getMinTemp(isMetric, it.day),
+                                maxTemp = MetricUtil.getMaxTemp(isMetric, it.day),
+                                windSpeed = MetricUtil.getWindSpeed(isMetric, it.day),
                                 condition = it.day.condition.text
                             )
 

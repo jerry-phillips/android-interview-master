@@ -3,30 +3,35 @@ package com.png.interview.weather.util
 import com.png.interview.weather.api.model.Current
 import com.png.interview.weather.api.model.Day
 
-data class MetricUtil(
-    private val isMetric: Boolean
-) {
-    private val temperatureAbbr = if (isMetric) "C" else "F"
-    private val speedAbbr = if (isMetric) "KPH" else "MPH"
+object MetricUtil {
 
-    fun getMaxTemp(day: Day): String {
-        return "${if (isMetric) day.maxtemp_c else day.maxtemp_f} $temperatureAbbr"
+    private fun getTemperatureAbbr(isMetric: Boolean): String {
+       return if (isMetric) "C" else "F"
     }
 
-    fun getMinTemp(day: Day): String {
-        return "${if (isMetric) day.mintemp_c else day.mintemp_c} $temperatureAbbr"
+    private fun getSpeedAbbr(isMetric: Boolean): String {
+        return if (isMetric) "KPH" else "MPH"
     }
 
-    fun getWindSpeed(day: Day): String {
-        return "${if (isMetric) day.maxwind_kph else day.maxwind_mph} $speedAbbr"
+
+    fun getMaxTemp(isMetric: Boolean, day: Day): String {
+        return "${if (isMetric) day.maxtemp_c else day.maxtemp_f} ${getTemperatureAbbr(isMetric)}"
     }
 
-    fun getCurrentTemp(current: Current): String {
-        return "${if (isMetric) current.temp_c else current.temp_f} $temperatureAbbr"
+    fun getMinTemp(isMetric: Boolean, day: Day): String {
+        return "${if (isMetric) day.mintemp_c else day.mintemp_c} ${getTemperatureAbbr(isMetric)}"
     }
 
-    fun getCurrentSpeed(current: Current): String {
-        return "${if (isMetric) current.gust_kph else current.gust_mph} $speedAbbr"
+    fun getWindSpeed(isMetric: Boolean,day: Day): String {
+        return "${if (isMetric) day.maxwind_kph else day.maxwind_mph} ${getSpeedAbbr(isMetric)}"
+    }
+
+    fun getCurrentTemp(isMetric: Boolean, current: Current): String {
+        return "${if (isMetric) current.temp_c else current.temp_f} ${getSpeedAbbr(isMetric)}"
+    }
+
+    fun getCurrentSpeed(isMetric: Boolean, current: Current): String {
+        return "${if (isMetric) current.gust_kph else current.gust_mph} ${getSpeedAbbr(isMetric)}"
     }
 
 }

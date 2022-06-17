@@ -19,15 +19,15 @@ class DefaultCreateCurrentWeatherRepFromQueryUseCase @Inject constructor(
     override suspend fun invoke(query: String): CurrentWeatherViewRepresentation {
         return when (val result = getCurrentWeatherDataUseCase(query)) {
             is NetworkResponse.Success -> {
-                val metricUtil = MetricUtil(sharedPreferences.getBoolean(IS_METRIC, false))
+                val isMetric = sharedPreferences.getBoolean(IS_METRIC, false)
                 CurrentWeatherViewRepresentation.AvailableWeatherViewRep(
                     AvailableWeatherViewData(
                         name = result.body.location.name,
                         date = result.body.location.localtime,
-                        temperature = metricUtil.getCurrentTemp(result.body.current),
+                        temperature = MetricUtil.getCurrentTemp(isMetric, result.body.current),
                         condition = result.body.current.condition.text,
                         windDirection = result.body.current.wind_dir,
-                        windSpeed = metricUtil.getCurrentSpeed(result.body.current)
+                        windSpeed = MetricUtil.getCurrentSpeed(isMetric, result.body.current)
                     )
                 )
             }
